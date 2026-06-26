@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cristhian Amarilla · Ingeniero en Informática</title>
+  <meta name="description" content="Portfolio de Cristhian Amarilla, Ingeniero en Informática especializado en datos, Excel, SQL, Python y Power BI.">
+  <meta property="og:title" content="Cristhian Amarilla · Ingeniero en Informática">
+  <meta property="og:description" content="Ingeniero en Informática apasionado por los datos, con experiencia en análisis estadístico, bases de datos y generación de informes.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#00E676">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #090D0A;
+      --bg-alt: #0C140E;
+      --card: #122117;
+      --border: rgba(255,255,255,0.04);
+      --green: #00E676;
+      --green-dim: rgba(0,230,118,.15);
+      --green-dark: #00C853;
+      --white: #FFFFFF;
+      --gray: #8892A4;
+      --radius: 8px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--green); color: var(--bg); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 50px 0; position: relative; z-index: 1; }
+
+    /* ---- Header ---- */
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 14px 0; transition: .25s ease;
+    }
+    .header.scrolled {
+      background: rgba(9,13,10,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 13px; font-weight: 600; color: var(--gray);
+      text-decoration: none; letter-spacing: 2px; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.06); padding: 6px 14px;
+      border-radius: 6px; transition: .25s ease;
+    }
+    .logo:hover { border-color: rgba(255,255,255,.12); color: var(--white); }
+    .nav { display: flex; gap: 4px; align-items: center; }
+    .nav a {
+      color: var(--gray); text-decoration: none; font-size: 13px;
+      font-weight: 500; padding: 7px 14px; border-radius: 6px;
+      transition: .2s ease;
+    }
+    .nav a:hover { color: var(--white); background: rgba(255,255,255,.04); }
+    .nav a.active { color: var(--green); }
+    .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; padding: 4px; }
+
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 100px 0 50px;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .hero-grid > :first-child { padding-top: 30px; }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 54px); font-weight: 700;
+      line-height: 1.08; letter-spacing: -1px; margin-bottom: 8px;
+    }
+    .hero h1 .name { color: var(--white); }
+    .hero h1 .role {
+      display: block; font-size: .45em; font-weight: 500; margin-top: 6px;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--gray);
+      background: none; -webkit-text-fill-color: var(--gray);
+    }
+    .hero p {
+      font-size: 15px; color: var(--gray); max-width: 480px;
+      margin-bottom: 20px; line-height: 1.6;
+    }
+    .hero-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 24px; border-radius: 6px; font-size: 13px;
+      font-weight: 500; text-decoration: none; transition: .2s ease;
+      cursor: pointer; border: none; font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--green); color: var(--bg);
+      box-shadow: 0 4px 16px rgba(0,230,118,.2);
+    }
+    .btn-primary:hover { background: #00C853; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: #C8D0DC;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .btn-outline:hover { border-color: var(--green); color: var(--white); }
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-visual::before {
+      content: ''; position: absolute;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, var(--green-dim) 0%, transparent 70%);
+      border-radius: 50%; opacity: .5;
+    }
+    .hero-photo {
+      width: 200px; height: auto; border-radius: var(--radius);
+      position: relative; z-index: 1;
+    }
+    .hero-stats { display: flex; gap: 28px; margin-top: 24px; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 24px; font-weight: 700; color: var(--green); }
+    .hero-stat .label { font-size: 11px; color: var(--gray); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ---- Quick highlight bar ---- */
+    .highlight-bar {
+      display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+      margin: -25px auto 0; max-width: 700px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 32px;
+      position: relative; z-index: 2;
+    }
+    .highlight-bar span {
+      font-size: 13px; color: var(--gray);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .highlight-bar span strong { color: var(--green); font-weight: 600; }
+
+    /* ---- Section ---- */
+    .section-title { font-size: clamp(20px, 3vw, 28px); font-weight: 600; letter-spacing: -.3px; }
+    .section-desc { color: var(--gray); font-size: 14px; margin-top: 4px; margin-bottom: 24px; }
+
+    /* ---- About ---- */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .about-text p { color: var(--gray); font-size: 14px; margin-bottom: 10px; line-height: 1.6; }
+    .about-text strong { color: var(--white); font-weight: 500; }
+    .about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .about-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px;
+      border-left: 2px solid transparent;
+      transition: .2s ease;
+    }
+    .about-card:hover { border-left-color: var(--green); }
+    .about-card .tag { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
+    .about-card .val { font-size: 14px; font-weight: 500; }
+    .langs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .lang-chip {
+      padding: 6px 14px; font-size: 12px; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; display: flex; align-items: center; transition: .2s ease;
+    }
+    .lang-chip:hover { border-color: rgba(255,255,255,.1); }
+    .lang-chip .l-level { color: var(--gray); font-size: 12px; margin-left: 4px; }
+
+    /* ---- Exp + Edu ---- */
+    .exp { background: var(--bg-alt); }
+    .exp-edu-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      align-items: start;
+    }
+    .exp-edu-label {
+      font-size: 12px; font-weight: 600; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 16px; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .exp-item {
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .exp-year { font-size: 12px; color: var(--green); font-weight: 600; margin-bottom: 4px; }
+    .exp-where h3 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+    .exp-where .exp-role { font-size: 13px; color: var(--gray); margin-bottom: 8px; }
+    .exp-where ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+    .exp-where ul li { font-size: 13px; color: var(--gray); padding-left: 16px; position: relative; }
+    .exp-where ul li::before { content: '—'; position: absolute; left: 0; color: var(--green); opacity: .5; }
+
+    .edu-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+      margin-bottom: 12px; transition: .2s ease;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-item:hover { border-color: rgba(255,255,255,.08); }
+    .edu-item .e-year { font-size: 12px; color: var(--green-dark); font-weight: 600; margin-bottom: 4px; }
+    .edu-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .edu-item .e-inst { font-size: 13px; color: var(--gray); margin-bottom: 6px; }
+    .edu-item .e-project {
+      font-size: 13px; color: var(--gray); padding: 8px 12px;
+      background: rgba(0,230,118,.04); border-radius: 6px;
+      border: 1px solid rgba(0,230,118,.06); margin-top: 4px;
+    }
+    .edu-item .e-project span { color: var(--green); font-weight: 500; }
+
+    /* ---- Skills ---- */
+    .skills { background: var(--bg-alt); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .skill-cat h3 { font-size: 12px; margin-bottom: 14px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .skill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .skill-row:last-child { margin-bottom: 0; }
+    .skill-row .s-name { font-size: 13px; font-weight: 500; min-width: 100px; }
+    .skill-row .s-track { flex: 1; height: 4px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; }
+    .skill-row .s-fill { height: 100%; border-radius: 4px; width: 0; background: var(--green); transition: width .8s ease; }
+    .skill-row .s-fill.animated { width: var(--w); }
+    .skill-row .s-level { font-size: 11px; color: var(--gray); min-width: 40px; text-align: right; text-transform: uppercase; letter-spacing: .3px; }
+
+    /* ---- Certs ---- */
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+    .cert-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px; gap: 12px;
+      display: flex; align-items: center; transition: .2s ease;
+    }
+    .cert-item:hover { border-color: rgba(255,255,255,.08); }
+    .cert-icon {
+      width: 36px; height: 36px; min-width: 36px; border-radius: 8px;
+      background: rgba(0,230,118,.06); display: flex; align-items: center;
+      justify-content: center; font-size: 16px;
+    }
+    .cert-name { font-size: 14px; font-weight: 500; }
+    .cert-year { font-size: 12px; color: var(--gray); margin-top: 1px; }
+
+    /* ---- Contact ---- */
+    .contact { background: var(--bg-alt); }
+    .contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-col h3 {
+      font-size: 12px; font-weight: 600; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .contact-col-inner { display: flex; flex-direction: column; gap: 8px; }
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px;
+    }
+    .contact-card h4 { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
+    .contact-card p { font-size: 14px; font-weight: 500; }
+    .contact-card a { color: var(--green); text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ---- Footer ---- */
+    .footer { padding: 24px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.04); }
+    .footer p { color: var(--gray); font-size: 12px; }
+
+    /* ---- Reveal ---- */
+    .r { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .r.v { opacity: 1; transform: translateY(0); }
+    .r-1 { transition-delay: .08s; }
+    .r-2 { transition-delay: .16s; }
+    .r-3 { transition-delay: .24s; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+      .hero p { margin: 0 auto 20px; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-photo { width: 160px; }
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .about-text { text-align: center; }
+      .about-cards { max-width: 400px; margin: 0 auto; }
+      .langs { justify-content: center; }
+      section { padding: 40px 0; }
+      .skills-grid { grid-template-columns: 1fr; gap: 24px; }
+      .contact-cols { grid-template-columns: 1fr; }
+      .highlight-bar { margin-top: -15px; padding: 12px 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        flex-direction: column; background: rgba(9,13,10,.96);
+        backdrop-filter: blur(16px); padding: 12px; border-bottom: 1px solid var(--border); }
+      .nav.open { display: flex; }
+      .menu-toggle { display: block; }
+      .header-inner { position: relative; }
+      .hero h1 { font-size: 24px; }
+      .hero p { font-size: 13px; margin-bottom: 16px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { justify-content: center; }
+      .hero-photo { width: 130px; }
+      .hero-stats { gap: 16px; flex-wrap: wrap; }
+      .hero-stat { flex: 1; min-width: 60px; }
+      .hero-stat .num { font-size: 20px; }
+      .hero-stat .label { font-size: 10px; }
+      .about-cards { grid-template-columns: 1fr; }
+      .exp-edu-grid { grid-template-columns: 1fr; gap: 24px; }
+      .exp-item { padding: 14px 0; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .contact-cols { grid-template-columns: 1fr; }
+      .highlight-bar { flex-direction: column; align-items: center; gap: 8px; margin-top: -10px; padding: 12px 16px; }
+      .container { padding: 0 14px; }
+      section { padding: 32px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">CA</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+      <nav class="nav" id="nav">
+        <a href="#hero">Inicio</a>
+        <a href="#about">Perfil</a>
+        <a href="#exp">Experiencia</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#certs">Certificaciones</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <h1>
+            <span class="name">Cristhian Amarilla</span>
+            <span class="role">Ingeniero en Informática</span>
+          </h1>
+          <p>Apasionado por transformar datos en decisiones. Experiencia en análisis estadístico, bases de datos relacionales, generación de informes y optimización de procesos.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Contactar</a>
+            <a href="#exp" class="btn btn-outline">Experiencia</a>
+            <a href="Curriculum v2.pdf" download class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar CV
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="num">4+</div><div class="label">Años de experiencia</div></div>
+            <div class="hero-stat"><div class="num">3</div><div class="label">Idiomas</div></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-photo" src="foto.png" alt="Cristhian Amarilla">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlight Bar -->
+  <div class="container">
+    <div class="highlight-bar r">
+      <span><strong>🎓</strong> Ingeniero en Informática · 2024</span>
+      <span><strong>💼</strong> 4+ años de experiencia</span>
+      <span><strong>📍</strong> Lambaré, Paraguay</span>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="r">
+      <h2 class="section-title">Sobre mí</h2>
+      <p class="section-desc">Conoce más sobre mi perfil profesional</p></div>
+      <div class="about-grid">
+        <div class="about-text r r-1">
+          <p>Graduado en <strong>Ingeniería en Informática</strong> por la Universidad Nihon Gakko (2024). Mi enfoque está en el análisis de datos, la calidad de la información y la generación de informes que faciliten la toma de decisiones.</p>
+          <p>Mi proyecto final de grado fue un <strong>E-commerce para una florería</strong>, desarrollado en Python con PostgreSQL, cubriendo frontend, backend y base de datos.</p>
+          <p>He trabajado en el sector público (Palacio de Justicia) y privado (Fondo Ganadero), con responsabilidades en <strong>carga y consolidación de datos, soporte técnico, documentación y generación de informes estadísticos</strong>.</p>
+        </div>
+        <div>
+          <div class="about-cards r r-2">
+            <div class="about-card"><div class="tag">Edad</div><div class="val">25 años</div></div>
+            <div class="about-card"><div class="tag">Ubicación</div><div class="val">Lambar&eacute;, Paraguay</div></div>
+            <div class="about-card"><div class="tag">Teléfono</div><div class="val">0983 450 905</div></div>
+            <div class="about-card"><div class="tag">Email</div><div class="val">crissamarilla22@gmail.com</div></div>
+          </div>
+          <div class="langs r r-3">
+            <div class="lang-chip"><span>Español</span><span class="l-level">Nativo</span></div>
+            <div class="lang-chip"><span>Portugués</span><span class="l-level">Intermedio</span></div>
+            <div class="lang-chip"><span>Inglés</span><span class="l-level">Básico</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience + Education -->
+  <section class="exp" id="exp">
+    <div class="container">
+      <div class="r">
+      <h2 class="section-title">Experiencia y Formación</h2>
+      <p class="section-desc">Trayectoria profesional y académica</p></div>
+      <div class="exp-edu-grid">
+        <div class="exp-col">
+          <h3 class="exp-edu-label">Experiencia laboral</h3>
+          <div class="exp-item r r-1">
+            <div class="exp-year">2021 — 2024</div>
+            <div class="exp-where">
+              <h3>Palacio de Justicia</h3>
+              <div class="exp-role">Asistente de Estadística Civil</div>
+              <ul>
+                <li>Carga de datos en sistema Judisoft</li>
+                <li>Recolección y consolidación de datos civiles (JudiSoft a Excel)</li>
+                <li>Generación de informes estadísticos (Excel) para corrección de datos</li>
+                <li>Soporte y mantenimiento de computadoras</li>
+                <li>Documentación de procesos</li>
+              </ul>
+            </div>
+          </div>
+          <div class="exp-item r r-2">
+            <div class="exp-year">2018</div>
+            <div class="exp-where">
+              <h3>Fondo Ganadero</h3>
+              <div class="exp-role">Técnico en Soporte · Pasantía Universitaria</div>
+              <ul>
+                <li>Soporte al usuario</li>
+                <li>Gestión de datos</li>
+                <li>Soporte de Red</li>
+                <li>Asistente en Procesos de la Web</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="edu-col">
+          <h3 class="exp-edu-label">Educación</h3>
+          <div class="edu-item r r-1">
+            <div class="e-year">2024</div>
+            <h3>Ingeniería en Informática</h3>
+            <div class="e-inst">Universidad Nihon Gakko</div>
+            <div class="e-project"><span>Proyecto final:</span> E-commerce para una Florería — Python, PostgreSQL, VS Code</div>
+          </div>
+          <div class="edu-item r r-2">
+            <div class="e-year">2018</div>
+            <h3>Bachiller Técnico en Informática</h3>
+            <div class="e-inst">Colegio Nacional de Lambaré</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="r">
+      <h2 class="section-title">Habilidades técnicas</h2>
+      <p class="section-desc">Tecnologías y herramientas con las que trabajo</p></div>
+      <div class="skills-grid">
+        <div class="skill-cat r r-1">
+          <h3>Lenguajes y herramientas</h3>
+          <div class="skill-row"><span class="s-name">Python</span><div class="s-track"><div class="s-fill" style="--w: 35%"></div></div><span class="s-level">Básico</span></div>
+          <div class="skill-row"><span class="s-name">SQL / PL-SQL</span><div class="s-track"><div class="s-fill" style="--w: 40%"></div></div><span class="s-level">Básico</span></div>
+          <div class="skill-row"><span class="s-name">C, C++</span><div class="s-track"><div class="s-fill" style="--w: 30%"></div></div><span class="s-level">Básico</span></div>
+          <div class="skill-row"><span class="s-name">HTML, CSS</span><div class="s-track"><div class="s-fill" style="--w: 35%"></div></div><span class="s-level">Básico</span></div>
+          <div class="skill-row"><span class="s-name">JavaScript</span><div class="s-track"><div class="s-fill" style="--w: 30%"></div></div><span class="s-level">Básico</span></div>
+        </div>
+        <div class="skill-cat r r-2">
+          <h3>Análisis y datos</h3>
+          <div class="skill-row"><span class="s-name">Excel</span><div class="s-track"><div class="s-fill" style="--w: 70%"></div></div><span class="s-level">Intermedio</span></div>
+          <div class="skill-row"><span class="s-name">Power BI</span><div class="s-track"><div class="s-fill" style="--w: 35%"></div></div><span class="s-level">Básico</span></div>
+          <div class="skill-row"><span class="s-name">Oracle DB</span><div class="s-track"><div class="s-fill" style="--w: 65%"></div></div><span class="s-level">Intermedio</span></div>
+          <div class="skill-row"><span class="s-name">Bases relacionales</span><div class="s-track"><div class="s-fill" style="--w: 70%"></div></div><span class="s-level">Intermedio</span></div>
+          <div class="skill-row"><span class="s-name">Generación informes</span><div class="s-track"><div class="s-fill" style="--w: 75%"></div></div><span class="s-level">Intermedio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certs -->
+  <section id="certs">
+    <div class="container">
+      <div class="r">
+      <h2 class="section-title">Cursos y certificaciones</h2>
+      <p class="section-desc">Formación complementaria</p></div>
+      <div class="certs-grid">
+        <div class="cert-item r r-1"><div class="cert-icon">🎓</div><div><div class="cert-name">Ingeniero en Informática</div><div class="cert-year">2024 · Universidad Nihon Gakko</div></div></div>
+        <div class="cert-item r r-2"><div class="cert-icon">🗄️</div><div><div class="cert-name">Taller SQL y PL/SQL</div><div class="cert-year">2025</div></div></div>
+        <div class="cert-item r r-1"><div class="cert-icon">🗃️</div><div><div class="cert-name">Introducción a Base de Datos</div><div class="cert-year">2025</div></div></div>
+        <div class="cert-item r r-2"><div class="cert-icon">💾</div><div><div class="cert-name">Base de Datos Oracle</div><div class="cert-year">2025</div></div></div>
+        <div class="cert-item r r-1"><div class="cert-icon">📘</div><div><div class="cert-name">Curso de Inglés Básico</div><div class="cert-year">2018</div></div></div>
+        <div class="cert-item r r-2"><div class="cert-icon">📊</div><div><div class="cert-name">Word, Excel, Access, PowerPoint</div><div class="cert-year">2019</div></div></div>
+        <div class="cert-item r r-1"><div class="cert-icon">🔢</div><div><div class="cert-name">Retroalimentación Matemática</div><div class="cert-year">2019</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="r">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-desc">Disponible para proyectos y oportunidades</p></div>
+      <div class="contact-cols">
+        <div class="contact-col">
+          <h3>Mi Contacto</h3>
+          <div class="contact-col-inner">
+            <div class="contact-card r r-1"><div><h4>Email</h4><p><a href="mailto:crissamarilla22@gmail.com">crissamarilla22@gmail.com</a></p></div></div>
+            <div class="contact-card r r-2"><div><h4>Teléfono</h4><p><a href="tel:0983450905">0983 450 905</a></p></div></div>
+          </div>
+        </div>
+        <div class="contact-col">
+          <h3>Mis Referencias</h3>
+          <div class="contact-col-inner">
+            <div class="contact-card r r-1"><div><h4>Ing. Rubén Darío Chamorro</h4><p>(0986) 909 567</p></div></div>
+            <div class="contact-card r r-2"><div><h4>Ing. Carlos Augusto Amarilla</h4><p>(0961) 895 393</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Cristhian Enmanuel Amarilla Lopes · Ingeniero en Informática</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => nav.classList.toggle('open'));
+    document.querySelectorAll('.nav a').forEach(l => l.addEventListener('click', () => nav.classList.remove('open')));
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 150) cur = s.id; });
+      navLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + cur); });
+    });
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('v');
+          e.target.querySelectorAll('.s-fill').forEach(b => b.classList.add('animated'));
+        }
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
