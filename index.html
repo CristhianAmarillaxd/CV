@@ -256,12 +256,12 @@ section[id] { scroll-margin-top: 72px; }
     .about-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 14px;
-      border-left: 2px solid transparent;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: inset 2px 0 0 0 transparent;
+      transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .about-card:hover {
-      border-left-color: var(--primary); transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: inset 2px 0 0 0 var(--primary), var(--shadow-md);
+      transform: translateY(-2px);
     }
     .about-card .tag { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
     .about-card .val { font-size: var(--text-sm); font-weight: 500; }
